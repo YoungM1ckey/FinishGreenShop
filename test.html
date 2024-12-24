@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Закрытие формы при клике вне её</title>
+    <style>
+        /* Стили для формы */
+        .form-container {
+            width: 300px;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none; /* Изначально форма скрыта */
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none; /* Изначально оверлей скрыт */
+        }
+    </style>
+</head>
+<body>
+
+<!-- Оверлей -->
+<div class="overlay" id="overlay"></div>
+
+<!-- Форма -->
+<div class="form-container" id="form">
+    <h3>Форма</h3>
+    <form>
+        <label for="name">Имя:</label><br>
+        <input type="text" id="name" name="name"><br><br>
+        <button type="submit">Отправить</button>
+    </form>
+</div>
+
+<!-- Кнопка для открытия формы -->
+<button id="openForm">Открыть форму</button>
+
+<script>
+    // Получаем элементы
+    const form = document.getElementById('form');
+    const overlay = document.getElementById('overlay');
+    const openFormBtn = document.getElementById('openForm');
+
+    // Открытие формы
+    openFormBtn.onclick = function() {
+        form.style.display = 'block';
+        overlay.style.display = 'block';
+    };
+
+    // Закрытие формы при клике вне её
+    window.onclick = function(event) {
+        if (event.target === overlay) {
+            form.style.display = 'none';
+            overlay.style.display = 'none';
+        }
+    };
+</script>
+
+</body>
+</html>
